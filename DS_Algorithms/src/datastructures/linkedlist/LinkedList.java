@@ -52,6 +52,18 @@ public class LinkedList {
 		return newHead;
 	}
 	
+	public ListNode reverseListRecur(ListNode head) {
+		if(head == null || head.next == null) {
+			return head;
+		}
+		ListNode newHead = reverseListRecur(head.next);
+		
+		head.next.next = head;
+		head.next = null;
+		
+		return newHead;
+	}
+	
 	public ListNode recurReverseList(ListNode head) {
 		return recurReverseListHelper(head, null);
 	}
@@ -98,5 +110,10 @@ public class LinkedList {
 		
 		linkedList.head = linkedList.deleteNode(linkedList.head, 7);
 		linkedList.printList(linkedList.head);
+		System.out.println();
+		
+		linkedList.head = linkedList.reverseListRecur(linkedList.head);
+		linkedList.printList(linkedList.head);
+		System.out.println();
 	}
 }
